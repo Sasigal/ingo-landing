@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INGO - Safe Rides, Empowered Women Drivers | Uganda's Premier Women-Drivers Ride Service</title>
+    <title>INGO - Safe Rides, Empowered Women Drivers | Uganda's Premier Women-Only Ride Service</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,6 +69,66 @@
         .social-icon:hover {
             transform: translateY(-3px);
         }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 999;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            max-height: 400px;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 16px 24px;
+            color: #374151;
+            text-decoration: none;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .mobile-menu a:hover {
+            background: #f9fafb;
+            color: #9333ea;
+        }
+        
+        .mobile-menu button {
+            width: calc(100% - 48px);
+            margin: 16px 24px;
+        }
+        
+        .desktop-menu {
+            display: flex;
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body style="margin: 0; padding: 0; background: #f9fafb;">
@@ -83,7 +143,9 @@
                     </div>
                     <span style="font-size: 24px; font-weight: bold; font-family: 'Poppins', sans-serif;" class="gradient-text">INGO</span>
                 </div>
-                <div style="display: flex; align-items: center; gap: 32px;">
+                
+                <!-- Desktop Menu -->
+                <div class="desktop-menu" style="align-items: center; gap: 32px;">
                     <a href="#services" style="color: #374151; text-decoration: none; font-weight: 500;">Services</a>
                     <a href="#safety" style="color: #374151; text-decoration: none; font-weight: 500;">Safety</a>
                     <a href="#testimonials" style="color: #374151; text-decoration: none; font-weight: 500;">Testimonials</a>
@@ -93,7 +155,26 @@
                         Download App
                     </button>
                 </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" onclick="toggleMenu()" style="background: none; border: none; cursor: pointer; padding: 8px;">
+                    <svg style="width: 28px; height: 28px; color: #374151;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#services" onclick="toggleMenu()">Services</a>
+            <a href="#safety" onclick="toggleMenu()">Safety</a>
+            <a href="#testimonials" onclick="toggleMenu()">Testimonials</a>
+            <a href="#blog" onclick="toggleMenu()">Blog</a>
+            <a href="#contact" onclick="toggleMenu()">Contact</a>
+            <button style="background: linear-gradient(135deg, #9333ea, #ec4899); color: white; padding: 12px 24px; border-radius: 9999px; border: none; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">
+                Download App
+            </button>
         </div>
     </nav>
 
@@ -107,16 +188,16 @@
             <div style="display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center;">
                 <div style="color: white;" class="animate-slide-up">
                     <div style="display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 9999px; font-size: 14px; font-weight: 600; margin-bottom: 24px;">
-                        🚗 Uganda's #1 Women-Drivers Ride Platform
+                        🚗 Uganda's #1 Women-Only Ride Platform
                     </div>
-                    <h1 style="font-size: 56px; font-weight: 800; margin-bottom: 24px; line-height: 1.1; font-family: 'Poppins', sans-serif;">
+                    <h1 style="font-size: clamp(32px, 8vw, 56px); font-weight: 800; margin-bottom: 24px; line-height: 1.1; font-family: 'Poppins', sans-serif;">
                         Your Journey,<br/>
                         <span style="color: #fbbf24;">Your Safety,</span><br/>
-                        Your Comfort
+                        Your Empowerment
                     </h1>
-                    <p style="font-size: 24px; margin-bottom: 32px; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                    <p style="font-size: clamp(16px, 4vw, 24px); margin-bottom: 32px; color: rgba(255,255,255,0.9); line-height: 1.6;">
                         Experience rides driven by empowered, certified women professionals. 
-                        Where every mile celebrates comfort and ultimate safety.
+                        Where every mile celebrates safety and ultimate comfort.
                     </p>
                     <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px;">
                         <button style="background: white; color: #9333ea; padding: 16px 32px; border-radius: 9999px; border: none; font-weight: 700; font-size: 18px; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.3); font-family: 'Poppins', sans-serif;">
@@ -152,10 +233,10 @@
                 <div style="display: inline-block; background: #f3e8ff; color: #9333ea; padding: 8px 16px; border-radius: 9999px; font-weight: 600; margin-bottom: 16px;">
                     Our Services
                 </div>
-                <h2 style="font-size: 48px; font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
-                    Solutions for <span class="gradient-text">Every Journey</span>
+                <h2 style="font-size: clamp(28px, 6vw, 48px); font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
+                    Comprehensive Solutions for <span class="gradient-text">Every Journey</span>
                 </h2>
-                <p style="font-size: 20px; color: #6b7280; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: clamp(16px, 3vw, 20px); color: #6b7280; max-width: 800px; margin: 0 auto;">
                     From certified driver training to corporate partnerships, we're transforming transportation by women
                 </p>
             </div>
@@ -256,12 +337,12 @@
         <div style="max-width: 1280px; margin: 0 auto; position: relative;">
             <div style="text-align: center; margin-bottom: 64px;">
                 <div style="display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 9999px; font-weight: 600; margin-bottom: 16px;">
-                    🛡️ Safety First, Comfort Always
+                    🛡️ Safety First, Always
                 </div>
-                <h2 style="font-size: 48px; font-weight: 700; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
-                    Your Safety is Our <span style="color: #fbbf24;">Promise</span>
+                <h2 style="font-size: clamp(28px, 6vw, 48px); font-weight: 700; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
+                    Your Security is Our <span style="color: #fbbf24;">Promise</span>
                 </h2>
-                <p style="font-size: 20px; color: rgba(255,255,255,0.9); max-width: 800px; margin: 0 auto;">
+                <p style="font-size: clamp(16px, 3vw, 20px); color: rgba(255,255,255,0.9); max-width: 800px; margin: 0 auto;">
                     Advanced technology meets human care to ensure every ride is secure, tracked, and protected
                 </p>
             </div>
@@ -301,7 +382,7 @@
                 <div style="display: inline-block; background: #fce7f3; color: #ec4899; padding: 8px 16px; border-radius: 9999px; font-weight: 600; margin-bottom: 16px;">
                     ❤️ Loved by Thousands
                 </div>
-                <h2 style="font-size: 48px; font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
+                <h2 style="font-size: clamp(28px, 6vw, 48px); font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
                     Stories of <span class="gradient-text">Safety & Empowerment</span>
                 </h2>
             </div>
@@ -352,7 +433,7 @@
                         <div style="font-size: 28px; font-weight: 700; color: #2563eb; font-family: 'Poppins', sans-serif;">Stanbic</div>
                     </div>
                     <div style="background: white; border-radius: 12px; padding: 24px 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <div style="font-size: 28px; font-weight: 700; color: #10b981; font-family: 'Poppins', sans-serif;">Hilton</div>
+                        <div style="font-size: 28px; font-weight: 700; color: #10b981; font-family: 'Poppins', sans-serif;">Safeboda</div>
                     </div>
                 </div>
             </div>
@@ -366,10 +447,10 @@
                 <div style="display: inline-block; background: #fef3c7; color: #d97706; padding: 8px 16px; border-radius: 9999px; font-weight: 600; margin-bottom: 16px;">
                     📝 Latest from Our Blog
                 </div>
-                <h2 style="font-size: 48px; font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
+                <h2 style="font-size: clamp(28px, 6vw, 48px); font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
                     Insights & Stories
                 </h2>
-                <p style="font-size: 20px; color: #6b7280; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: clamp(16px, 3vw, 20px); color: #6b7280; max-width: 800px; margin: 0 auto;">
                     Read about safety tips, driver stories, and the latest from INGO
                 </p>
             </div>
@@ -420,11 +501,11 @@
             <div style="position: absolute; top: 0; left: 25%; width: 400px; height: 400px; background: white; border-radius: 50%; filter: blur(80px);"></div>
         </div>
         <div style="max-width: 1024px; margin: 0 auto; text-align: center; position: relative;">
-            <h2 style="font-size: 48px; font-weight: 700; color: white; margin-bottom: 24px; font-family: 'Poppins', sans-serif;">
+            <h2 style="font-size: clamp(32px, 7vw, 48px); font-weight: 700; color: white; margin-bottom: 24px; font-family: 'Poppins', sans-serif;">
                 Ready to Experience Safe, <br/>Empowered Transportation?
             </h2>
-            <p style="font-size: 20px; color: rgba(255,255,255,0.9); margin-bottom: 40px;">
-                Join thousands of women who trust INGO for their daily commute. Download now and get your first ride free!
+            <p style="font-size: clamp(16px, 3vw, 20px); color: rgba(255,255,255,0.9); margin-bottom: 40px;">
+                Join thousands Ugandans who trust INGO for their daily commute. Download now and get your first ride free!
             </p>
             <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 32px;">
                 <button style="background: white; color: #9333ea; padding: 16px 40px; border-radius: 9999px; border: none; font-weight: 700; font-size: 18px; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-family: 'Poppins', sans-serif;">
@@ -592,6 +673,12 @@
     </footer>
 
     <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+        
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -605,9 +692,16 @@
                 }
             });
         });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
-
-
-
