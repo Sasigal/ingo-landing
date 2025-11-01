@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INGO - Safe Rides, Empowered Women Drivers | Uganda's Premier Women-Drivers Ride hailing service</title>
+    <title>INGO - Coming Soon | Uganda's #1 Women-Only Ride Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +18,7 @@
         body {
             font-family: 'PT Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -25,14 +26,14 @@
         }
         
         .gradient-text {
-            background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+            background: linear-gradient(135deg, #CB6BE6 0%, #FF65C3 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         .hero-gradient {
-            background: linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #f97316 100%);
+            background: linear-gradient(135deg, #CB6BE6 0%, #FF65C3 100%);
         }
         
         .animate-float {
@@ -44,669 +45,703 @@
             50% { transform: translateY(-20px); }
         }
         
-        .animate-slide-up {
-            animation: slideUp 0.8s ease-out;
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(203, 107, 230, 0.3);
         }
         
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
         
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.3);
-        }
-        
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-3px);
-        }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu {
+        .modal-overlay {
             display: none;
             position: fixed;
-            top: 80px;
+            top: 0;
             left: 0;
             right: 0;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 999;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow-y: auto;
         }
         
-        .mobile-menu.active {
-            max-height: 400px;
-        }
-        
-        .mobile-menu a {
-            display: block;
-            padding: 16px 24px;
-            color: #374151;
-            text-decoration: none;
-            border-bottom: 1px solid #f3f4f6;
-        }
-        
-        .mobile-menu a:hover {
-            background: #f9fafb;
-            color: #9333ea;
-        }
-        
-        .mobile-menu button {
-            width: calc(100% - 48px);
-            margin: 16px 24px;
-        }
-        
-        .desktop-menu {
+        .modal-overlay.active {
             display: flex;
         }
         
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: auto;
+        }
+        
+        .shake {
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+        
+        .spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #CB6BE6;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         @media (max-width: 768px) {
-            .desktop-menu {
-                display: none;
+            .image-container {
+                height: 400px;
+                border-radius: 16px;
             }
             
-            .menu-toggle {
-                display: block;
+            h1 {
+                font-size: 36px !important;
             }
             
-            .mobile-menu {
-                display: block;
+            .countdown-item {
+                min-width: 80px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .image-container {
+                height: 300px;
+            }
+            
+            h1 {
+                font-size: 28px !important;
+            }
+            
+            .countdown-item {
+                min-width: 60px !important;
             }
         }
     </style>
 </head>
 <body style="margin: 0; padding: 0; background: #f9fafb;">
 
-    <!-- Navigation -->
-    <nav style="position: fixed; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 1px 3px rgba(0,0,0,0.1); z-index: 1000;">
-        <div style="max-width: 1280px; margin: 0 auto; padding: 0 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; height: 80px;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #9333ea, #ec4899); border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(147, 51, 234, 0.3);">
-                        <span style="color: white; font-size: 24px; font-weight: bold; font-family: 'Poppins', sans-serif;">I</span>
+    <!-- Coming Soon Page -->
+    <div id="comingSoonPage" style="min-height: 100vh; display: flex; align-items: center; padding: 2rem 1rem;">
+        <div style="max-width: 1280px; margin: 0 auto; width: 100%;">
+            
+            <!-- Logo -->
+            <div style="text-align: center; margin-bottom: 48px;">
+                <div style="display: inline-flex; align-items: center; gap: 12px;">
+                    <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #CB6BE6, #FF65C3); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 16px rgba(203, 107, 230, 0.3);">
+                        <span style="color: white; font-size: 32px; font-weight: bold; font-family: 'Poppins', sans-serif;">I</span>
                     </div>
-                    <span style="font-size: 24px; font-weight: bold; font-family: 'Poppins', sans-serif;" class="gradient-text">INGO</span>
+                    <span style="font-size: 40px; font-weight: bold; font-family: 'Poppins', sans-serif;" class="gradient-text">INGO</span>
                 </div>
-                
-                <!-- Desktop Menu -->
-                <div class="desktop-menu" style="align-items: center; gap: 32px;">
-                    <a href="#services" style="color: #374151; text-decoration: none; font-weight: 500;">Services</a>
-                    <a href="#safety" style="color: #374151; text-decoration: none; font-weight: 500;">Safety</a>
-                    <a href="#testimonials" style="color: #374151; text-decoration: none; font-weight: 500;">Testimonials</a>
-                    <a href="#blog" style="color: #374151; text-decoration: none; font-weight: 500;">Blog</a>
-                    <a href="#contact" style="color: #374151; text-decoration: none; font-weight: 500;">Contact</a>
-                    <button style="background: linear-gradient(135deg, #9333ea, #ec4899); color: white; padding: 10px 24px; border-radius: 9999px; border: none; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">
-                        Download App
-                    </button>
-                </div>
-                
-                <!-- Mobile Menu Toggle -->
-                <button class="menu-toggle" onclick="toggleMenu()" style="background: none; border: none; cursor: pointer; padding: 8px;">
-                    <svg style="width: 28px; height: 28px; color: #374151;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
             </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#services" onclick="toggleMenu()">Services</a>
-            <a href="#safety" onclick="toggleMenu()">Safety</a>
-            <a href="#testimonials" onclick="toggleMenu()">Testimonials</a>
-            <a href="#blog" onclick="toggleMenu()">Blog</a>
-            <a href="#contact" onclick="toggleMenu()">Contact</a>
-            <button style="background: linear-gradient(135deg, #9333ea, #ec4899); color: white; padding: 12px 24px; border-radius: 9999px; border: none; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">
-                Download App
-            </button>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient" style="padding: 150px 1rem 80px; position: relative; overflow: hidden;">
-        <div style="position: absolute; inset: 0; opacity: 0.1;">
-            <div style="position: absolute; top: 80px; left: 40px; width: 300px; height: 300px; background: white; border-radius: 50%; filter: blur(60px);"></div>
-            <div style="position: absolute; bottom: 80px; right: 40px; width: 400px; height: 400px; background: #fbbf24; border-radius: 50%; filter: blur(60px);"></div>
-        </div>
-        <div style="max-width: 1280px; margin: 0 auto; position: relative; z-index: 10;">
-            <div style="display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center;">
-                <div style="color: white;" class="animate-slide-up">
-                    <div style="display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 9999px; font-size: 14px; font-weight: 600; margin-bottom: 24px;">
-                        🚗 Uganda's #1 Women-Drivers Ride hailing Platform
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
+                
+                <!-- Left Content -->
+                <div>
+                    <div style="display: inline-block; background: linear-gradient(135deg, rgba(203, 107, 230, 0.2), rgba(255, 101, 195, 0.2)); padding: 12px 24px; border-radius: 50px; margin-bottom: 24px; font-weight: 600; color: #CB6BE6;">
+                        🚀 Launching Soon
                     </div>
-                    <h1 style="font-size: clamp(32px, 8vw, 56px); font-weight: 800; margin-bottom: 24px; line-height: 1.1; font-family: 'Poppins', sans-serif;">
-                        Your Journey,<br/>
-                        <span style="color: #fbbf24;">Your Safety,</span><br/>
-                        Your Comfort
+                    
+                    <h1 style="font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; font-family: 'Poppins', sans-serif; color: #1f2937;">
+                        Something <span class="gradient-text">Amazing</span> is Coming
                     </h1>
-                    <p style="font-size: clamp(16px, 4vw, 24px); margin-bottom: 32px; color: rgba(255,255,255,0.9); line-height: 1.6;">
-                        Experience rides driven by empowered, certified women professionals. 
-                        Where every mile celebrates safety and ultimate comfort.
+                    
+                    <p style="font-size: 20px; line-height: 1.8; margin-bottom: 40px; color: #6b7280;">
+                        INGO Female Transporters is revolutionizing transportation in Uganda with a Women-led mobility brand. 
+                        That is redefining safe, reliable, and inclusive transport for all.
                     </p>
-                    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px;">
-                        <button style="background: white; color: #9333ea; padding: 16px 32px; border-radius: 9999px; border: none; font-weight: 700; font-size: 18px; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.3); font-family: 'Poppins', sans-serif;">
-                            📱 App Store
+                    
+                    <!-- Countdown Timer -->
+                    <div style="display: flex; gap: 16px; margin-bottom: 40px; flex-wrap: wrap;">
+                        <div class="countdown-item" style="background: white; border-radius: 16px; padding: 20px; text-align: center; min-width: 100px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <div id="days" style="font-size: 36px; font-weight: 800; font-family: 'Poppins', sans-serif;" class="gradient-text">30</div>
+                            <div style="color: #6b7280; font-size: 14px; font-weight: 600;">DAYS</div>
+                        </div>
+                        <div class="countdown-item" style="background: white; border-radius: 16px; padding: 20px; text-align: center; min-width: 100px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <div id="hours" style="font-size: 36px; font-weight: 800; font-family: 'Poppins', sans-serif;" class="gradient-text">12</div>
+                            <div style="color: #6b7280; font-size: 14px; font-weight: 600;">HOURS</div>
+                        </div>
+                        <div class="countdown-item" style="background: white; border-radius: 16px; padding: 20px; text-align: center; min-width: 100px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <div id="minutes" style="font-size: 36px; font-weight: 800; font-family: 'Poppins', sans-serif;" class="gradient-text">45</div>
+                            <div style="color: #6b7280; font-size: 14px; font-weight: 600;">MINUTES</div>
+                        </div>
+                        <div class="countdown-item" style="background: white; border-radius: 16px; padding: 20px; text-align: center; min-width: 100px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <div id="seconds" style="font-size: 36px; font-weight: 800; font-family: 'Poppins', sans-serif;" class="gradient-text">30</div>
+                            <div style="color: #6b7280; font-size: 14px; font-weight: 600;">SECONDS</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Email Signup -->
+                    <div style="background: white; border-radius: 16px; padding: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; gap: 8px; margin-bottom: 32px;">
+                        <input type="email" placeholder="Enter your email for early access" style="flex: 1; padding: 16px; border: none; font-size: 16px; outline: none; font-family: 'PT Sans', sans-serif; background: transparent;">
+                        <button style="background: linear-gradient(135deg, #CB6BE6, #FF65C3); color: white; padding: 16px 32px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; white-space: nowrap;">
+                            Notify Me
                         </button>
-                        <button style="background: rgba(88, 28, 135, 0.3); backdrop-filter: blur(10px); border: 2px solid white; color: white; padding: 16px 32px; border-radius: 9999px; font-weight: 700; font-size: 18px; cursor: pointer; font-family: 'Poppins', sans-serif;">
-                            🤖 Google Play
+                    </div>
+                    
+                    <!-- Features -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 48px; height: 48px; background: linear-gradient(135deg, rgba(203, 107, 230, 0.2), rgba(255, 101, 195, 0.2)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                👩‍✈️
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; color: #1f2937; font-family: 'Poppins', sans-serif;">Women Drivers</div>
+                                <div style="font-size: 14px; color: #6b7280;">Empowered & Verified</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 48px; height: 48px; background: linear-gradient(135deg, rgba(203, 107, 230, 0.2), rgba(255, 101, 195, 0.2)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                🔒
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; color: #1f2937; font-family: 'Poppins', sans-serif;">Safe Rides</div>
+                                <div style="font-size: 14px; color: #6b7280;">24/7 Safety Features</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Admin Access Button -->
+                    <div style="border-top: 2px solid #e5e7eb; padding-top: 24px;">
+                        <button onclick="showPasscodeModal()" style="background: #374151; color: white; padding: 12px 24px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                            <span>🔐</span> Admin: Driver Onboarding
                         </button>
                     </div>
-                    <div style="display: flex; gap: 32px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.2);">
-                        <div>
-                            <div style="font-size: 28px; font-weight: 700; font-family: 'Poppins', sans-serif;">5,000+</div>
-                            <div style="color: rgba(255,255,255,0.8);">Safe Rides Daily</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 28px; font-weight: 700; font-family: 'Poppins', sans-serif;">2,500+</div>
-                            <div style="color: rgba(255,255,255,0.8);">Certified Drivers</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 28px; font-weight: 700; font-family: 'Poppins', sans-serif;">4.9★</div>
-                            <div style="color: rgba(255,255,255,0.8);">Average Rating</div>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" style="padding: 80px 1rem; background: white;">
-        <div style="max-width: 1280px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 64px;">
-                <div style="display: inline-block; background: #f3e8ff; color: #9333ea; padding: 8px 16px; border-radius: 9999px; font-weight: 600; margin-bottom: 16px;">
-                    Our Services
-                </div>
-                <h2 style="font-size: clamp(28px, 6vw, 48px); font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
-                    Comprehensive Solutions for <span class="gradient-text">Every Journey</span>
-                </h2>
-                <p style="font-size: clamp(16px, 3vw, 20px); color: #6b7280; max-width: 800px; margin: 0 auto;">
-                    From certified driver training to corporate partnerships, we're transforming transportation by women
-                </p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
-                <!-- Service 1 -->
-                <div class="card-hover" style="background: linear-gradient(135deg, #faf5ff, white); border-radius: 24px; padding: 32px; border: 1px solid #e9d5ff;">
-                    <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #9333ea, #ec4899); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(147,51,234,0.3);">
-                        <span style="font-size: 32px;">🎓</span>
-                    </div>
-                    <h3 style="font-size: 24px; font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">Driver Training & Certification</h3>
-                    <p style="color: #6b7280; margin-bottom: 24px;">
-                        Comprehensive 6-week program covering safety protocols, customer service excellence, navigation mastery, and self-defense techniques.
-                    </p>
-                    <ul style="list-style: none; padding: 0; margin-bottom: 24px;">
-                        <li style="margin-bottom: 12px; display: flex; align-items: start; gap: 8px;">
-                            <span style="color: #10b981;">✓</span>
-                            <span style="color: #374151;">Background verification</span>
-                        </li>
-                        <li style="margin-bottom: 12px; display: flex; align-items: start; gap: 8px;">
-                            <span style="color: #10b981;">✓</span>
-                            <span style="color: #374151;">Professional development courses</span>
-                        </li>
-                        <li style="display: flex; align-items: start; gap: 8px;">
-                            <span style="color: #10b981;">✓</span>
-                            <span style="color: #374151;">Official INGO certification</span>
-                        </li>
-                    </ul>
-                    <button style="width: 100%; background: #9333ea; color: white; padding: 12px; border-radius: 12px; border: none; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">
-                        Apply as Driver
-                    </button>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="card-hover" style="background: linear-gradient(135deg, #fef2f2, white); border-radius: 24px; padding: 32px; border: 1px solid #fecaca;">
-                    <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #ec4899, #fb923c); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(236,72,153,0.3);">
-                        <span style="font-size: 32px;">🏢</span>
-                    </div>
-                    <h3 style="font-size: 24px; font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">Corporate Ride Solutions</h3>
-                    <p style="color: #6b7280; margin-bottom: 24px;">
-                        Tailored transportation solutions for businesses prioritizing employee safety. Dedicated account management and priority service.
-                    </p>
-                    <ul style="list-style: none; padding: 0; margin-bottom: 24px;">
-                        <li style="margin-bottom: 12px; display: flex; align-items: start; gap: 8px;">
-                            <span style="color: #10b981;">✓</span>
-                            <span style="color: #374151;">Volume discounts & invoicing</span>
-                        </li>
-                        <li style="margin-bottom: 12px; display: flex; align-items: start; gap: 8px;">
-                            <span style="color: #10b981;">✓</span>
-                            <span style="color: #374151;">Detailed trip reporting</span>
-                        </li>
-                        <li style="display: flex; align-items: start; gap: 8px;">
-                            <span style="color: #10b981;">✓</span>
-                            <span style="color: #374151;">24/7 dedicated support</span>
-                        </li>
-                    </ul>
-                    <button style="width: 100%; background: #ec4899; color: white; padding: 12px; border-radius: 12px; border: none; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">
-                        Partner With Us
-                    </button>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="card-hover" style="background: linear-gradient(135deg, #fff7ed, white); border-radius: 24px; padding: 32px; border: 1px solid #fed7aa;">
-                    <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #fb923c, #dc2626); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(251,146,60,0.3);">
-                        <span style="font-size: 32px;">👥</span>
-                    </div>
-                    <h3 style="font-size: 24px; font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">Driver Hiring Platform</h3>
-                    <p style="color: #6b7280; margin-bottom: 24px;">
-                        Connect with our network of professional, certified women drivers for full-time or part-time positions.
-                    </p>
-                    <ul style="list-style: none; padding: 0; margin-bottom: 24px;">
-                        <li style="margin-bottom: 12px; display: flex; align-items: start; gap: 8px;">
-                            <span style="color: #10b981;">✓</span>
-                            <span style="color: #374151;">Pre-vetted professionals</span>
-                        </li>
-                        <li style="margin-bottom: 12px; display: flex; align-items: start; gap: 8px;">
-                            <span style="color: #10b981;">✓</span>
-                            <span style="color: #374151;">Flexible hiring options</span>
-                        </li>
-                        <li style="display: flex; align-items: start; gap: 8px;">
-                            <span style="color: #10b981;">✓</span>
-                            <span style="color: #374151;">Ongoing quality assurance</span>
-                        </li>
-                    </ul>
-                    <button style="width: 100%; background: #fb923c; color: white; padding: 12px; border-radius: 12px; border: none; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">
-                        Hire Drivers
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Safety Section -->
-    <section id="safety" style="padding: 80px 1rem; background: linear-gradient(135deg, #581c87, #ec4899); color: white; position: relative; overflow: hidden;">
-        <div style="position: absolute; inset: 0; opacity: 0.1;">
-            <div style="position: absolute; top: 0; left: 0; width: 400px; height: 400px; background: white; border-radius: 50%; filter: blur(80px);"></div>
-        </div>
-        <div style="max-width: 1280px; margin: 0 auto; position: relative;">
-            <div style="text-align: center; margin-bottom: 64px;">
-                <div style="display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 9999px; font-weight: 600; margin-bottom: 16px;">
-                    🛡️ Safety First, Comfort Always
-                </div>
-                <h2 style="font-size: clamp(28px, 6vw, 48px); font-weight: 700; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
-                    Your Safety is Our <span style="color: #fbbf24;">Promise</span>
-                </h2>
-                <p style="font-size: clamp(16px, 3vw, 20px); color: rgba(255,255,255,0.9); max-width: 800px; margin: 0 auto;">
-                    Advanced technology meets human care to ensure every ride is secure, tracked, and protected
-                </p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
-                <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.2);">
-                    <div style="font-size: 40px; margin-bottom: 16px;">🚨</div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; font-family: 'Poppins', sans-serif;">SOS Emergency Button</h3>
-                    <p style="color: rgba(255,255,255,0.9);">Instant alert to authorities, emergency contacts, and support team with one tap</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.2);">
-                    <div style="font-size: 40px; margin-bottom: 16px;">📍</div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; font-family: 'Poppins', sans-serif;">Live GPS Tracking</h3>
-                    <p style="color: rgba(255,255,255,0.9);">Real-time location shared with your trusted contacts throughout the journey</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.2);">
-                    <div style="font-size: 40px; margin-bottom: 16px;">✅</div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; font-family: 'Poppins', sans-serif;">Verified Drivers</h3>
-                    <p style="color: rgba(255,255,255,0.9);">Background checks, police clearance, and continuous monitoring of all drivers</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.2);">
-                    <div style="font-size: 40px; margin-bottom: 16px;">🎥</div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; font-family: 'Poppins', sans-serif;">Trip Recording</h3>
-                    <p style="color: rgba(255,255,255,0.9);">Optional audio/video recording for added security and accountability</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section id="testimonials" style="padding: 80px 1rem; background: #f9fafb;">
-        <div style="max-width: 1280px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 64px;">
-                <div style="display: inline-block; background: #fce7f3; color: #ec4899; padding: 8px 16px; border-radius: 9999px; font-weight: 600; margin-bottom: 16px;">
-                    ❤️ Loved by Thousands
-                </div>
-                <h2 style="font-size: clamp(28px, 6vw, 48px); font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
-                    Stories of <span class="gradient-text">Safety & Empowerment</span>
-                </h2>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 64px;">
-                <!-- Testimonial 1 -->
-                <div style="background: linear-gradient(135deg, rgba(147,51,234,0.05), rgba(236,72,153,0.05)); border-radius: 24px; padding: 32px; border: 1px solid #e9d5ff;">
-                    <div style="color: #fbbf24; margin-bottom: 16px; font-size: 20px;">★★★★★</div>
-                    <p style="color: #374151; margin-bottom: 24px; line-height: 1.7;">
-                        "As a working mother, knowing I can get a safe ride home at any time gives me peace of mind. The drivers are professional, friendly, and I always feel secure."
-                    </p>
-                    <div style="font-weight: 700; color: #111827; font-family: 'Poppins', sans-serif;">Grace Mukasa</div>
-                    <div style="font-size: 14px; color: #6b7280;">Marketing Manager, Kampala</div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div style="background: linear-gradient(135deg, rgba(147,51,234,0.05), rgba(236,72,153,0.05)); border-radius: 24px; padding: 32px; border: 1px solid #e9d5ff;">
-                    <div style="color: #fbbf24; margin-bottom: 16px; font-size: 20px;">★★★★★</div>
-                    <p style="color: #374151; margin-bottom: 24px; line-height: 1.7;">
-                        "INGO changed my life! After completing their training program, I became financially independent. The support from the team is amazing!"
-                    </p>
-                    <div style="font-weight: 700; color: #111827; font-family: 'Poppins', sans-serif;">Sarah Namaganda</div>
-                    <div style="font-size: 14px; color: #6b7280;">INGO Driver, Entebbe</div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div style="background: linear-gradient(135deg, rgba(147,51,234,0.05), rgba(236,72,153,0.05)); border-radius: 24px; padding: 32px; border: 1px solid #e9d5ff;">
-                    <div style="color: #fbbf24; margin-bottom: 16px; font-size: 20px;">★★★★★</div>
-                    <p style="color: #374151; margin-bottom: 24px; line-height: 1.7;">
-                        "For our female employees, safety is paramount. INGO's corporate solution has been a game-changer. Highly recommend!"
-                    </p>
-                    <div style="font-weight: 700; color: #111827; font-family: 'Poppins', sans-serif;">Diana Namuli</div>
-                    <div style="font-size: 14px; color: #6b7280;">HR Director, Tech Corp Uganda</div>
-                </div>
-            </div>
-
-            <!-- Company Logos -->
-            <div style="text-align: center;">
-                <h3 style="font-size: 24px; font-weight: 700; color: #111827; margin-bottom: 32px; font-family: 'Poppins', sans-serif;">Trusted by Leading Organizations</h3>
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; opacity: 0.6;">
-                    <div style="background: white; border-radius: 12px; padding: 24px 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <div style="font-size: 28px; font-weight: 700; color: #fbbf24; font-family: 'Poppins', sans-serif;">MTN</div>
-                    </div>
-                    <div style="background: white; border-radius: 12px; padding: 24px 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <div style="font-size: 28px; font-weight: 700; color: #dc2626; font-family: 'Poppins', sans-serif;">Airtel</div>
-                    </div>
-                    <div style="background: white; border-radius: 12px; padding: 24px 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <div style="font-size: 28px; font-weight: 700; color: #2563eb; font-family: 'Poppins', sans-serif;">Stanbic</div>
-                    </div>
-                    <div style="background: white; border-radius: 12px; padding: 24px 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <div style="font-size: 28px; font-weight: 700; color: #10b981; font-family: 'Poppins', sans-serif;">Hilton</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Teaser Section -->
-    <section id="blog" style="padding: 80px 1rem; background: white;">
-        <div style="max-width: 1280px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 64px;">
-                <div style="display: inline-block; background: #fef3c7; color: #d97706; padding: 8px 16px; border-radius: 9999px; font-weight: 600; margin-bottom: 16px;">
-                    📝 Latest from Our Blog
-                </div>
-                <h2 style="font-size: clamp(28px, 6vw, 48px); font-weight: 700; color: #111827; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">
-                    Insights & Stories
-                </h2>
-                <p style="font-size: clamp(16px, 3vw, 20px); color: #6b7280; max-width: 800px; margin: 0 auto;">
-                    Read about safety tips, driver stories, and the latest from INGO
-                </p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-bottom: 48px;">
-                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                    <div style="height: 200px; background: linear-gradient(135deg, #9333ea, #ec4899);"></div>
-                    <div style="padding: 24px;">
-                        <div style="font-size: 12px; color: #9333ea; font-weight: 600; margin-bottom: 8px;">SAFETY TIPS</div>
-                        <h3 style="font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 12px; font-family: 'Poppins', sans-serif;">10 Essential Safety Tips for Night Rides</h3>
-                        <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6;">Learn how to stay safe during evening commutes with our comprehensive safety guide...</p>
-                        <a href="#" style="color: #9333ea; font-weight: 600; text-decoration: none;">Read More →</a>
-                    </div>
-                </div>
-
-                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                    <div style="height: 200px; background: linear-gradient(135deg, #ec4899, #fb923c);"></div>
-                    <div style="padding: 24px;">
-                        <div style="font-size: 12px; color: #ec4899; font-weight: 600; margin-bottom: 8px;">DRIVER STORIES</div>
-                        <h3 style="font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 12px; font-family: 'Poppins', sans-serif;">Meet Mary: From Single Mom to Top-Rated Driver</h3>
-                        <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6;">Discover how INGO transformed Mary's life and empowered her to achieve financial independence...</p>
-                        <a href="#" style="color: #ec4899; font-weight: 600; text-decoration: none;">Read More →</a>
-                    </div>
-                </div>
-
-                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                    <div style="height: 200px; background: linear-gradient(135deg, #fb923c, #dc2626);"></div>
-                    <div style="padding: 24px;">
-                        <div style="font-size: 12px; color: #fb923c; font-weight: 600; margin-bottom: 8px;">COMPANY NEWS</div>
-                        <h3 style="font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 12px; font-family: 'Poppins', sans-serif;">INGO Expands to Jinja and Mbarara</h3>
-                        <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6;">We're growing! INGO is now available in two more cities, bringing safe rides to more women...</p>
-                        <a href="#" style="color: #fb923c; font-weight: 600; text-decoration: none;">Read More →</a>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align: center;">
-                <a href="#" style="display: inline-block; background: linear-gradient(135deg, #9333ea, #ec4899); color: white; padding: 14px 32px; border-radius: 9999px; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">
-                    View All Blog Posts
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section style="padding: 80px 1rem; background: linear-gradient(135deg, #9333ea, #ec4899, #fb923c); position: relative; overflow: hidden;">
-        <div style="position: absolute; inset: 0; opacity: 0.2;">
-            <div style="position: absolute; top: 0; left: 25%; width: 400px; height: 400px; background: white; border-radius: 50%; filter: blur(80px);"></div>
-        </div>
-        <div style="max-width: 1024px; margin: 0 auto; text-align: center; position: relative;">
-            <h2 style="font-size: clamp(32px, 7vw, 48px); font-weight: 700; color: white; margin-bottom: 24px; font-family: 'Poppins', sans-serif;">
-                Ready to Experience Safe, <br/>Empowered Transportation?
-            </h2>
-            <p style="font-size: clamp(16px, 3vw, 20px); color: rgba(255,255,255,0.9); margin-bottom: 40px;">
-                Join thousands Ugandans who trust INGO for their daily commute. Download now and get your first ride free!
-            </p>
-            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 32px;">
-                <button style="background: white; color: #9333ea; padding: 16px 40px; border-radius: 9999px; border: none; font-weight: 700; font-size: 18px; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-family: 'Poppins', sans-serif;">
-                    📱 Download on App Store
-                </button>
-                <button style="background: rgba(88, 28, 135, 0.3); backdrop-filter: blur(10px); border: 2px solid white; color: white; padding: 16px 40px; border-radius: 9999px; font-weight: 700; font-size: 18px; cursor: pointer; font-family: 'Poppins', sans-serif;">
-                    🤖 Get it on Google Play
-                </button>
-            </div>
-            <p style="color: rgba(255,255,255,0.9); font-size: 18px;">🎉 Use code <span style="font-weight: 700; font-family: 'Poppins', sans-serif;">SAFEFIRST</span> for your first free ride!</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact" style="background: #111827; color: white; padding: 64px 1rem 32px;">
-        <div style="max-width: 1280px; margin: 0 auto;">
-            <!-- Main Footer Content -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 48px; margin-bottom: 48px;">
                 
-                <!-- Get in Touch -->
-                <div>
-                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 24px; color: #fbbf24; font-family: 'Poppins', sans-serif;">Get in Touch</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
-                            <span style="color: #9333ea; font-size: 20px;">📍</span>
-                            <div>
-                                <div style="font-weight: 600; margin-bottom: 4px;">Location</div>
-                                <div style="color: #9ca3af;">Plot 24, Kampala Road<br/>Kampala, Uganda</div>
+                <!-- Right Image -->
+                <div class="animate-float">
+                    <div class="image-container">
+                        <!-- Placeholder Image with gradient background -->
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #CB6BE6 0%, #FF65C3 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 2rem;">
+                            <div style="font-size: 120px; margin-bottom: 24px;">🚗</div>
+                            <h3 style="font-size: 32px; font-weight: 700; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">App Preview</h3>
+                            <p style="font-size: 18px; opacity: 0.95; max-width: 400px;">
+                                Actual app screenshot will be featured here!
+                            </p>
+                            <div style="margin-top: 24px; padding: 12px 24px; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border-radius: 12px; font-size: 14px;">
+                                Recommended: 1200×800px
                             </div>
-                        </li>
-                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
-                            <span style="color: #9333ea; font-size: 20px;">📞</span>
-                            <div>
-                                <div style="font-weight: 600; margin-bottom: 4px;">Phone</div>
-                                <div style="color: #9ca3af;">+256 800 INGO (4646)</div>
-                            </div>
-                        </li>
-                        <li style="display: flex; align-items: start; gap: 12px;">
-                            <span style="color: #9333ea; font-size: 20px;">✉️</span>
-                            <div>
-                                <div style="font-weight: 600; margin-bottom: 4px;">Email</div>
-                                <div style="color: #9ca3af;">hello@ingo.ug</div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div style="margin-top: 24px; background: rgba(220, 38, 38, 0.2); border: 1px solid rgba(220, 38, 38, 0.5); border-radius: 12px; padding: 16px;">
-                        <div style="color: #fca5a5; font-weight: 600; margin-bottom: 4px; font-size: 14px;">24/7 Emergency Hotline</div>
-                        <div style="font-size: 22px; font-weight: 700; color: white; font-family: 'Poppins', sans-serif;">0800 911 INGO</div>
-                    </div>
-                </div>
-
-                <!-- Join the Team -->
-                <div>
-                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 24px; color: #fbbf24; font-family: 'Poppins', sans-serif;">Join the Team</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 16px;">
-                            <a href="#" style="color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
-                                <span style="color: #ec4899;">→</span>
-                                <span>We are Hiring</span>
-                            </a>
-                        </li>
-                        <li style="margin-bottom: 16px;">
-                            <a href="#" style="color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
-                                <span style="color: #ec4899;">→</span>
-                                <span>Join as a Driver</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" style="color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
-                                <span style="color: #ec4899;">→</span>
-                                <span>Corporate Clients</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Support -->
-                <div>
-                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 24px; color: #fbbf24; font-family: 'Poppins', sans-serif;">Support</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 16px;">
-                            <a href="#" style="color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
-                                <span style="color: #ec4899;">→</span>
-                                <span>FAQs</span>
-                            </a>
-                        </li>
-                        <li style="margin-bottom: 16px;">
-                            <a href="#" style="color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
-                                <span style="color: #ec4899;">→</span>
-                                <span>Terms of Use</span>
-                            </a>
-                        </li>
-                        <li style="margin-bottom: 16px;">
-                            <a href="#" style="color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
-                                <span style="color: #ec4899;">→</span>
-                                <span>Privacy Policy</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" style="color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s;">
-                                <span style="color: #ec4899;">→</span>
-                                <span>Talk to an Agent</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- About INGO -->
-                <div>
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #9333ea, #ec4899); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
-                            <span style="color: white; font-size: 24px; font-weight: bold; font-family: 'Poppins', sans-serif;">I</span>
                         </div>
-                        <span style="font-size: 24px; font-weight: 700; font-family: 'Poppins', sans-serif;">INGO</span>
                     </div>
-                    <p style="color: #9ca3af; margin-bottom: 24px; line-height: 1.7;">
-                        Empowering women, one safe ride at a time. Uganda's premier women-drivers transportation company dedicated to safety and comfort.
-                    </p>
                 </div>
             </div>
-
+            
             <!-- Social Media -->
-            <div style="border-top: 1px solid #374151; padding-top: 32px; margin-bottom: 24px;">
-                <div style="text-align: center; margin-bottom: 24px;">
-                    <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">Connect With Us</h4>
-                    <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-                        <!-- X (Twitter) -->
-                        <a href="#" class="social-icon" style="width: 48px; height: 48px; background: #1f2937; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
-                            <svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 24 24">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                            </svg>
-                        </a>
-                        
-                        <!-- Facebook -->
-                        <a href="#" class="social-icon" style="width: 48px; height: 48px; background: #1f2937; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
-                            <svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        
-                        <!-- Instagram -->
-                        <a href="#" class="social-icon" style="width: 48px; height: 48px; background: #1f2937; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
-                            <svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 24 24">
-                                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
-                            </svg>
-                        </a>
-                        
-                        <!-- TikTok -->
-                        <a href="#" class="social-icon" style="width: 48px; height: 48px; background: #1f2937; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
-                            <svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 24 24">
-                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
-                            </svg>
-                        </a>
-                    </div>
+            <div style="text-align: center; margin-top: 64px; padding-top: 32px; border-top: 2px solid #e5e7eb;">
+                <p style="color: #6b7280; margin-bottom: 16px; font-weight: 600;">Follow us for updates</p>
+                <div style="display: flex; justify-content: center; gap: 16px;">
+                    <a href="#" style="width: 48px; height: 48px; background: linear-gradient(135deg, #CB6BE6, #FF65C3); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s;">
+                        <svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="#" style="width: 48px; height: 48px; background: linear-gradient(135deg, #CB6BE6, #FF65C3); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s;">
+                        <svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="#" style="width: 48px; height: 48px; background: linear-gradient(135deg, #CB6BE6, #FF65C3); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s;">
+                        <svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 24 24">
+                            <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+                        </svg>
+                    </a>
+                    <a href="#" style="width: 48px; height: 48px; background: linear-gradient(135deg, #CB6BE6, #FF65C3); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s;">
+                        <svg style="width: 20px; height: 20px; fill: white;" viewBox="0 0 24 24">
+                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                        </svg>
+                    </a>
                 </div>
-            </div>
-
-            <!-- Copyright -->
-            <div style="border-top: 1px solid #374151; padding-top: 24px; text-align: center;">
-                <p style="color: #6b7280; font-size: 14px;">
-                    © 2025 INGO Uganda. All rights reserved. Empowering women through safe transportation.
-                </p>
             </div>
         </div>
-    </footer>
+    </div>
+
+    <!-- Passcode Modal -->
+    <div id="passcodeModal" class="modal-overlay" onclick="if(event.target === this) hidePasscodeModal()">
+        <div style="background: white; border-radius: 24px; padding: 48px; max-width: 500px; width: 100%; text-align: center;" onclick="event.stopPropagation()">
+            <div style="font-size: 64px; margin-bottom: 24px;">🔐</div>
+            <h3 style="font-size: 28px; font-weight: 800; margin-bottom: 16px; font-family: 'Poppins', sans-serif;" class="gradient-text">Admin Access Required</h3>
+            <p style="color: #6b7280; font-size: 16px; line-height: 1.7; margin-bottom: 32px;">
+                Enter the admin passcode to access the Driver Onboarding form
+            </p>
+            <input type="password" id="passcodeInput" placeholder="Enter passcode" style="width: 100%; padding: 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 18px; text-align: center; font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 2px; margin-bottom: 24px;">
+            <div id="passcodeError" style="color: #dc2626; font-size: 14px; margin-bottom: 16px; display: none; font-weight: 600;">
+                ❌ Incorrect passcode. Please try again.
+            </div>
+            <div style="display: flex; gap: 16px;">
+                <button onclick="hidePasscodeModal()" style="flex: 1; background: #f3f4f6; color: #374151; padding: 16px 32px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 16px;">
+                    Cancel
+                </button>
+                <button onclick="verifyPasscode()" style="flex: 1; background: linear-gradient(135deg, #CB6BE6, #FF65C3); color: white; padding: 16px 32px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 16px;">
+                    Access Form
+                </button>
+            </div>
+            <div style="margin-top: 24px; padding: 16px; background: #fef3c7; border-radius: 12px; text-align: left;">
+                <div style="font-weight: 700; color: #92400e; margin-bottom: 8px; font-size: 14px;">⚠️ Demo Passcode:</div>
+                <div style="color: #92400e; font-size: 14px;">
+                    <strong style="font-family: 'Poppins', sans-serif;">INGO2025</strong> (case-sensitive)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Driver Onboarding Form Modal -->
+    <div id="onboardingModal" class="modal-overlay">
+        <div class="modal-content" style="padding: 0;">
+            <!-- Header -->
+            <div class="hero-gradient" style="padding: 40px; color: white; position: relative;">
+                <button onclick="hideOnboardingModal()" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; display: flex; align-items: center; justify-content: center;">
+                    ×
+                </button>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <div style="width: 56px; height: 56px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 28px; font-weight: bold; font-family: 'Poppins', sans-serif;">I</span>
+                    </div>
+                    <span style="font-size: 28px; font-weight: bold; font-family: 'Poppins', sans-serif;">INGO</span>
+                </div>
+                <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 8px; font-family: 'Poppins', sans-serif;">Driver Onboarding Form</h2>
+                <p style="font-size: 16px; opacity: 0.95;">Complete this form to onboard a new driver into the INGO system</p>
+            </div>
+            
+            <!-- Form -->
+            <form id="onboardingForm" onsubmit="submitOnboarding(event)" style="padding: 48px;">
+                
+                <!-- Personal Information -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; font-family: 'Poppins', sans-serif; color: #CB6BE6; display: flex; align-items: center; gap: 8px;">
+                        <span>👤</span> Personal Information
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">First Name *</label>
+                            <input type="text" name="firstName" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Last Name *</label>
+                            <input type="text" name="lastName" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Date of Birth *</label>
+                            <input type="date" name="dob" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">National ID Number *</label>
+                            <input type="text" name="nationalId" required placeholder="CM12345678901234" style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Phone Number *</label>
+                        <input type="tel" name="phone" required placeholder="+256 700 123 456" style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Email Address *</label>
+                        <input type="email" name="email" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Residential Address *</label>
+                        <textarea name="address" required rows="3" style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif; resize: vertical;"></textarea>
+                    </div>
+                </div>
+                
+                <!-- License Information -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; font-family: 'Poppins', sans-serif; color: #CB6BE6; display: flex; align-items: center; gap: 8px;">
+                        <span>🪪</span> License Information
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Driver's License Number *</label>
+                            <input type="text" name="licenseNumber" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">License Expiry Date *</label>
+                            <input type="date" name="licenseExpiry" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Years of Driving Experience *</label>
+                        <select name="drivingExperience" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                            <option value="">Select experience</option>
+                            <option value="0-1">Less than 1 year</option>
+                            <option value="1-3">1-3 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5-10">5-10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Vehicle Information -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; font-family: 'Poppins', sans-serif; color: #CB6BE6; display: flex; align-items: center; gap: 8px;">
+                        <span>🚗</span> Vehicle Information
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Vehicle Make *</label>
+                            <input type="text" name="vehicleMake" required placeholder="e.g., Toyota" style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Vehicle Model *</label>
+                            <input type="text" name="vehicleModel" required placeholder="e.g., Corolla" style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Year of Manufacture *</label>
+                            <input type="number" name="vehicleYear" required min="2010" max="2025" placeholder="2020" style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Vehicle Color *</label>
+                            <input type="text" name="vehicleColor" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">License Plate Number *</label>
+                            <input type="text" name="licensePlate" required placeholder="UAG 123A" style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif; text-transform: uppercase;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Insurance Policy Number *</label>
+                            <input type="text" name="insurancePolicy" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Area -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; font-family: 'Poppins', sans-serif; color: #CB6BE6; display: flex; align-items: center; gap: 8px;">
+                        <span>📍</span> Service Area
+                    </h3>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Primary Operating City *</label>
+                        <select name="operatingCity" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                            <option value="">Select a city</option>
+                            <option value="kampala">Kampala</option>
+                            <option value="entebbe">Entebbe</option>
+                            <option value="jinja">Jinja</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 12px; color: #374151; font-family: 'Poppins', sans-serif;">Preferred Working Hours *</label>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 12px; border: 2px solid #e5e7eb; border-radius: 12px; cursor: pointer;">
+                                <input type="checkbox" name="workingHours" value="morning" style="width: 20px; height: 20px;">
+                                <span style="font-size: 14px;">Morning (6AM-12PM)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 12px; border: 2px solid #e5e7eb; border-radius: 12px; cursor: pointer;">
+                                <input type="checkbox" name="workingHours" value="afternoon" style="width: 20px; height: 20px;">
+                                <span style="font-size: 14px;">Afternoon (12PM-6PM)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 12px; border: 2px solid #e5e7eb; border-radius: 12px; cursor: pointer;">
+                                <input type="checkbox" name="workingHours" value="evening" style="width: 20px; height: 20px;">
+                                <span style="font-size: 14px;">Evening (6PM-12AM)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Emergency Contact -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; font-family: 'Poppins', sans-serif; color: #CB6BE6; display: flex; align-items: center; gap: 8px;">
+                        <span>🚨</span> Emergency Contact
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Contact Name *</label>
+                            <input type="text" name="emergencyName" required style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Relationship *</label>
+                            <input type="text" name="emergencyRelationship" required placeholder="e.g., Spouse, Parent" style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-family: 'Poppins', sans-serif;">Emergency Phone Number *</label>
+                        <input type="tel" name="emergencyPhone" required placeholder="+256 700 123 456" style="width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: 'PT Sans', sans-serif;">
+                    </div>
+                </div>
+                
+                <!-- Agreement -->
+                <div style="margin-bottom: 32px; padding: 24px; background: #f9fafb; border-radius: 16px; border-left: 4px solid #CB6BE6;">
+                    <label style="display: flex; align-items: start; gap: 12px; cursor: pointer;">
+                        <input type="checkbox" required style="width: 24px; height: 24px; margin-top: 4px; cursor: pointer;">
+                        <span style="font-size: 15px; line-height: 1.6; color: #374151;">
+                            I confirm that all information provided is accurate and complete. I understand that providing false information may result in immediate termination. I agree to INGO's terms of service and driver code of conduct. *
+                        </span>
+                    </label>
+                </div>
+                
+                <!-- Submit Button -->
+                <div style="display: flex; gap: 16px;">
+                    <button type="button" onclick="hideOnboardingModal()" style="flex: 1; background: #f3f4f6; color: #374151; padding: 18px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 18px;">
+                        Cancel
+                    </button>
+                    <button type="submit" id="submitBtn" style="flex: 2; background: linear-gradient(135deg, #CB6BE6, #FF65C3); color: white; padding: 18px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 18px;">
+                        Submit Onboarding
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script>
-        // Toggle mobile menu
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
+        // Your Google Apps Script URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuV9U9W_IdXQ1kOGhzg8MWiBy0ddgV44XzgW3aIUnJF5lINC_MGk8sp9FTJF5htFrkSQ/exec';
+        
+        // Countdown Timer
+        const launchDate = new Date('2025-12-31T23:59:59').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
         }
         
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Admin Passcode
+        const ADMIN_PASSCODE = 'INGO2025';
+        
+        // Driver ID Counter (stored in localStorage to persist)
+        let driverIdCounter = parseInt(localStorage.getItem('driverIdCounter') || '1');
+        
+        function showPasscodeModal() {
+            document.getElementById('passcodeModal').classList.add('active');
+            document.getElementById('passcodeInput').value = '';
+            document.getElementById('passcodeError').style.display = 'none';
+            setTimeout(() => document.getElementById('passcodeInput').focus(), 100);
+        }
+        
+        function hidePasscodeModal() {
+            document.getElementById('passcodeModal').classList.remove('active');
+            document.getElementById('passcodeInput').value = '';
+            document.getElementById('passcodeError').style.display = 'none';
+        }
+        
+        function verifyPasscode() {
+            const input = document.getElementById('passcodeInput').value;
+            const errorDiv = document.getElementById('passcodeError');
+            const modal = document.getElementById('passcodeModal').querySelector('div');
+            
+            if (input === ADMIN_PASSCODE) {
+                hidePasscodeModal();
+                showOnboardingModal();
+            } else {
+                errorDiv.style.display = 'block';
+                modal.classList.add('shake');
+                setTimeout(() => modal.classList.remove('shake'), 500);
+                document.getElementById('passcodeInput').value = '';
+                document.getElementById('passcodeInput').focus();
+            }
+        }
+        
+        document.getElementById('passcodeInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyPasscode();
+            }
+        });
+        
+        function showOnboardingModal() {
+            document.getElementById('onboardingModal').classList.add('active');
+        }
+        
+        function hideOnboardingModal() {
+            if (confirm('Are you sure you want to close this form? All entered data will be lost.')) {
+                document.getElementById('onboardingModal').classList.remove('active');
+                document.getElementById('onboardingForm').reset();
+            }
+        }
+        
+        // Submit Onboarding Form with improved error handling
+        async function submitOnboarding(e) {
+            e.preventDefault();
+            
+            console.log('Form submission started...');
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<div class="spinner"></div> Submitting...';
+            submitBtn.disabled = true;
+            
+            // Generate Driver ID
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const letter = letters[driverIdCounter % 26];
+            const driverId = `IFD/${String(driverIdCounter).padStart(3, '0')}${letter}`;
+            
+            console.log('Generated Driver ID:', driverId);
+            
+            // Get form data
+            const formData = new FormData(e.target);
+            
+            // Get working hours
+            const workingHoursCheckboxes = document.querySelectorAll('input[name="workingHours"]:checked');
+            const workingHours = Array.from(workingHoursCheckboxes).map(cb => cb.value).join(', ');
+            
+            // Prepare data
+            const data = {
+                driverId: driverId,
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                dob: formData.get('dob'),
+                nationalId: formData.get('nationalId'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                address: formData.get('address'),
+                licenseNumber: formData.get('licenseNumber'),
+                licenseExpiry: formData.get('licenseExpiry'),
+                drivingExperience: formData.get('drivingExperience'),
+                vehicleMake: formData.get('vehicleMake'),
+                vehicleModel: formData.get('vehicleModel'),
+                vehicleYear: formData.get('vehicleYear'),
+                vehicleColor: formData.get('vehicleColor'),
+                licensePlate: formData.get('licensePlate'),
+                insurancePolicy: formData.get('insurancePolicy'),
+                operatingCity: formData.get('operatingCity'),
+                workingHours: workingHours,
+                emergencyName: formData.get('emergencyName'),
+                emergencyRelationship: formData.get('emergencyRelationship'),
+                emergencyPhone: formData.get('emergencyPhone')
+            };
+            
+            console.log('Sending data:', data);
+            
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'text/plain',
+                    },
+                });
+                
+                console.log('Response received');
+                
+                // Increment and save counter
+                driverIdCounter++;
+                localStorage.setItem('driverIdCounter', driverIdCounter.toString());
+                
+                // Show success message
+                alert(`✅ Driver Successfully Onboarded!\n\nDriver ID: ${driverId}\nName: ${data.firstName} ${data.lastName}\n\nThe driver data has been saved to your Google Sheet: "Ingo Driver Onboarding"\n\nNext Steps:\n• Complete background check\n• Schedule vehicle inspection\n• Arrange training session\n• Activate driver profile`);
+                
+                // Reset form and close modal
+                e.target.reset();
+                document.getElementById('onboardingModal').classList.remove('active');
+                
+            } catch (error) {
+                console.error('Detailed error:', error);
+                
+                // More detailed error message
+                let errorMessage = '❌ Error submitting form!\n\n';
+                errorMessage += 'Please verify:\n';
+                errorMessage += '1. Your Google Script is deployed as "Web app"\n';
+                errorMessage += '2. Access is set to "Anyone"\n';
+                errorMessage += '3. You authorized the script during deployment\n';
+                errorMessage += '4. The spreadsheet "Ingo Driver Onboarding" exists\n\n';
+                errorMessage += 'Try: Redeploy your Google Script and update the URL\n\n';
+                errorMessage += 'Error: ' + error.message;
+                
+                alert(errorMessage);
+            } finally {
+                // Reset button state
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        }
+        
+        document.querySelectorAll('.modal-content').forEach(content => {
+            content.addEventListener('click', function(e) {
+                e.stopPropagation();
             });
         });
         
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('mobileMenu');
-            const toggle = document.querySelector('.menu-toggle');
-            
-            if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target)) {
-                menu.classList.remove('active');
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hidePasscodeModal();
+                if (document.getElementById('onboardingModal').classList.contains('active')) {
+                    hideOnboardingModal();
+                }
             }
         });
     </script>
+
+    <style>
+        @media (max-width: 768px) {
+            #comingSoonPage > div > div:nth-child(2) {
+                grid-template-columns: 1fr !important;
+            }
+            
+            #comingSoonPage h1 {
+                font-size: 36px !important;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+            }
+            
+            form > div > div {
+                grid-template-columns: 1fr !important;
+            }
+            
+            #comingSoonPage .image-container {
+                order: -1;
+            }
+        }
+    </style>
 </body>
 </html>
-
-
-
-
-
